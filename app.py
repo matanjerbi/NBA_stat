@@ -30,7 +30,6 @@ def initialize_db():
 
 if __name__ == '__main__':
     #function to read all players from API and save them to the database
-
     app.run(debug=True)
 
 

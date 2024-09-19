@@ -75,7 +75,6 @@ def get_players_for_all_seasons():
     seasons = [2022, 2023, 2024]
     for year in seasons:
         get_players_for_one_season(year)
-        print(f"Successfully fetched and saved players for season {year}")
     return "All players have been successfully fetched and saved to the database."
 
 
