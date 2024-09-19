@@ -7,7 +7,7 @@ from services.read_from_api_NBA import get_players_for_all_seasons
 app = Flask(__name__)
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users3.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users4.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
@@ -23,9 +23,9 @@ app.register_blueprint(fantasy_bp)
 # def hello_world():  # put application's code here
 #     return 'Hello World!'
 
-@app.route('/')
-def initialize_db():
-    return jsonify(get_players_for_all_seasons())
+# @app.route('/')
+# def initialize_db():
+#     return jsonify(get_players_for_all_seasons())
 
 
 if __name__ == '__main__':

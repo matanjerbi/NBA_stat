@@ -25,8 +25,14 @@ class PlayerStats(db.Model):  # Inherit from db.Model
     ppg_ratio = db.Column(db.Float, nullable=True)
 
     # serialize the data
-    @property
-    def serialize(self):
+
+
+
+    def __repr__(self):
+        return (f"<PlayerStats(player_name={self.player_name}, team={self.team},"
+                f" season={self.season})>")
+
+    def to_dict(self):
         return {
             'id': self.id,
             'player_name': self.player_name,
@@ -44,13 +50,6 @@ class PlayerStats(db.Model):  # Inherit from db.Model
             'atr': self.atr,
             'ppg_ratio': self.ppg_ratio
         }
-
-
-
-    def __repr__(self):
-        return (f"<PlayerStats(player_name={self.player_name}, team={self.team},"
-                f" season={self.season})>")
-
 
 if __name__ == "__main__":
     db.create_all()
