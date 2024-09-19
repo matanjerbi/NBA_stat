@@ -1,11 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
+from db_con import db
 
-db = SQLAlchemy()
 
 
 class PlayerStats(db.Model):  # Inherit from db.Model
     __tablename__ = 'player_stats'
 
+    #data from the API
+    id = db.Column(db.Integer, primary_key=True)
     player_name = db.Column(db.String, nullable=False)
     position = db.Column(db.String, nullable=False)
     games = db.Column(db.Integer, nullable=False)
@@ -17,19 +18,43 @@ class PlayerStats(db.Model):  # Inherit from db.Model
     points = db.Column(db.Integer, nullable=True)
     team = db.Column(db.String, nullable=False)
     season = db.Column(db.Integer, nullable=False)
-    player_id = db.Column(db.String, unique=True, nullable=False)
+    player_id = db.Column(db.String, nullable=False)
+
+    #data from our calculations
+    atr = db.Column(db.Float, nullable=True)
+    ppg_ratio = db.Column(db.Float, nullable=True)
+
+    # serialize the data
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'player_name': self.player_name,
+            'position': self.position,
+            'games': self.games,
+            'field_goals': self.field_goals,
+            'three_percent': self.three_percent,
+            'two_percent': self.two_percent,
+            'assists': self.assists,
+            'turnovers': self.turnovers,
+            'points': self.points,
+            'team': self.team,
+           'season': self.season,
+            'player_id': self.player_id,
+            'atr': self.atr,
+            'ppg_ratio': self.ppg_ratio
+        }
+
+
 
     def __repr__(self):
         return (f"<PlayerStats(player_name={self.player_name}, team={self.team},"
                 f" season={self.season})>")
 
 
-# Example code to add a player (assuming Flask app context):
 if __name__ == "__main__":
-    # Assuming this is run inside the Flask app context, e.g., with `app.app_context()`
     db.create_all()
 
-    # Add a sample player (like Jalen Crutcher)
     player = PlayerStats(id=18127, player_name="Jalen Crutcher", position="PG", games=1, field_goals=0,
                          three_percent=None, two_percent=0.000, assists=0, turnovers=0,
                          points=0, team="NOP", season=2024, player_id="crutcja01")
