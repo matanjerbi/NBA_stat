@@ -34,6 +34,7 @@ def get_players():
     players_json = [player.to_dict() for player in all_players]
     return jsonify(players_json)
 
+
 @player_bp.route('/position', methods=['GET'])
 def get_players_by_position():
     position = request.args.get('position')
