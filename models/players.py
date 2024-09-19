@@ -7,18 +7,18 @@ class PlayerStats(db.Model):  # Inherit from db.Model
 
     #data from the API
     id = db.Column(db.Integer, primary_key=True)
-    player_name = db.Column(db.String, nullable=False)
-    position = db.Column(db.String, nullable=False)
-    games = db.Column(db.Integer, nullable=False)
+    player_name = db.Column(db.String, nullable=True)
+    position = db.Column(db.String, nullable=True)
+    games = db.Column(db.Integer, nullable=True)
     field_goals = db.Column(db.Integer, nullable=True)
     three_percent = db.Column(db.Float, nullable=True)
-    two_percent = db.Column(db.Float, nullable=False)
+    two_percent = db.Column(db.Float, nullable=True)
     assists = db.Column(db.Integer, nullable=True)
     turnovers = db.Column(db.Integer, nullable=True)
     points = db.Column(db.Integer, nullable=True)
-    team = db.Column(db.String, nullable=False)
-    season = db.Column(db.Integer, nullable=False)
-    player_id = db.Column(db.String, nullable=False)
+    team = db.Column(db.String, nullable=True)
+    season = db.Column(db.Integer, nullable=True)
+    player_id = db.Column(db.String, nullable=True)
 
     #data from our calculations
     atr = db.Column(db.Float, nullable=True)
@@ -39,7 +39,7 @@ class PlayerStats(db.Model):  # Inherit from db.Model
             'turnovers': self.turnovers,
             'points': self.points,
             'team': self.team,
-           'season': self.season,
+            'season': self.season,
             'player_id': self.player_id,
             'atr': self.atr,
             'ppg_ratio': self.ppg_ratio
@@ -55,9 +55,9 @@ class PlayerStats(db.Model):  # Inherit from db.Model
 if __name__ == "__main__":
     db.create_all()
 
-    player = PlayerStats(id=18127, player_name="Jalen Crutcher", position="PG", games=1, field_goals=0,
-                         three_percent=None, two_percent=0.000, assists=0, turnovers=0,
-                         points=0, team="NOP", season=2024, player_id="crutcja01")
-
-    db.session.add(player)
-    db.session.commit()
+    # player = PlayerStats(id=18127, player_name="Jalen Crutcher", position="PG", games=1, field_goals=0,
+    #                      three_percent=None, two_percent=0.000, assists=0, turnovers=0,
+    #                      points=0, team="NOP", season=2024, player_id="crutcja01")
+    #
+    # db.session.add(player)
+    # db.session.commit()
